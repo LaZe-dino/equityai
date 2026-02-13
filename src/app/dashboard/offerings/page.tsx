@@ -7,10 +7,14 @@ export default async function MyOfferingsPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  if (!user) {
+    return <div className="glass-card py-16 text-center"><p className="text-neutral-500">Please sign in.</p></div>;
+  }
+
   const { data: company } = await supabase
     .from('companies')
     .select('id')
-    .eq('founder_id', user!.id)
+    .eq('founder_id', user.id)
     .single();
 
   const { data: offerings } = company

@@ -7,16 +7,20 @@ export default async function DashboardPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   
+  if (!user) {
+    return <div className="flex items-center justify-center py-20"><p className="text-neutral-500">Loading...</p></div>;
+  }
+
   const { data: profile } = await supabase
     .from('profiles')
     .select('*')
-    .eq('id', user!.id)
+    .eq('id', user.id)
     .single();
 
   if (profile?.role === 'founder') {
-    return <FounderDashboard userId={user!.id} />;
+    return <FounderDashboard userId={user.id} />;
   }
-  return <InvestorDashboard userId={user!.id} />;
+  return <InvestorDashboard userId={user.id} />;
 }
 
 async function FounderDashboard({ userId }: { userId: string }) {

@@ -50,7 +50,10 @@ function SignUpForm() {
       return;
     }
 
-    router.push('/dashboard');
+    // After signup, ensure the profile exists (the DB trigger should create it,
+    // but we need to wait a moment for it to propagate)
+    // Then redirect to onboarding
+    router.push('/onboarding');
     router.refresh();
   };
 
