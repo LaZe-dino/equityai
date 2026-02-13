@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "login": "Iniciar sesión",
+    "getStarted": "Comenzar",
+    "dashboard": "Panel",
+    "offerings": "Ofertas",
+    "profile": "Perfil"
+  },
+  "hero": {
+    "title": "Ofertas Privadas,",
+    "titleAccent": "Accesibles Para Todos",
+    "subtitle": "EquityAI conecta empresas en etapa semilla que buscan financiamiento con inversionistas tempranos. Sin intermediarios, sin fricción — solo oportunidades.",
+    "raiseCapital": "Levantar Capital",
+    "startInvesting": "Comenzar a Invertir"
+  },
+  "features": {
+    "heading": "Cómo Funciona",
+    "submit": {
+      "title": "Publica Tu Oferta",
+      "desc": "Crea un perfil de empresa, sube tu pitch deck y define los términos de la oferta en minutos."
+    },
+    "review": {
+      "title": "Revisión de Calidad",
+      "desc": "Cada oferta es revisada antes de publicarse, asegurando calidad para los inversionistas."
+    },
+    "connect": {
+      "title": "Conecta con Inversionistas",
+      "desc": "Los inversionistas exploran ofertas en vivo que coinciden con sus intereses y expresan su intención de invertir."
+    },
+    "close": {
+      "title": "Cierra el Trato",
+      "desc": "Revisa inversionistas interesados, acepta compromisos y cierra tu ronda."
+    }
+  },
+  "cta": {
+    "heading": "¿Listo para democratizar el financiamiento?",
+    "subtitle": "Ya sea que estés levantando tu ronda semilla o buscando la próxima gran oportunidad, EquityAI es donde comienza.",
+    "button": "Crear Cuenta Gratis"
+  },
+  "auth": {
+    "welcomeBack": "Bienvenido de vuelta",
+    "signInSubtitle": "Inicia sesión en tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "signIn": "Iniciar sesión",
+    "signingIn": "Iniciando sesión...",
+    "noAccount": "¿No tienes cuenta?",
+    "signUp": "Registrarse",
+    "createAccount": "Crea tu cuenta",
+    "signUpSubtitle": "Comienza tu viaje con EquityAI",
+    "fullName": "Nombre completo",
+    "iAmA": "Soy un...",
+    "founder": "Fundador",
+    "founderDesc": "Estoy levantando capital para mi empresa",
+    "investor": "Inversionista",
+    "investorDesc": "Busco invertir en startups",
+    "creatingAccount": "Creando cuenta...",
+    "haveAccount": "¿Ya tienes cuenta?"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}

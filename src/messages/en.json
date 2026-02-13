@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "login": "Log in",
+    "getStarted": "Get Started",
+    "dashboard": "Dashboard",
+    "offerings": "Offerings",
+    "profile": "Profile"
+  },
+  "hero": {
+    "title": "Private Offerings,",
+    "titleAccent": "Made Accessible",
+    "subtitle": "EquityAI connects seed-stage companies seeking funding with early-stage investors. No gatekeepers, no friction — just opportunities.",
+    "raiseCapital": "Raise Capital",
+    "startInvesting": "Start Investing"
+  },
+  "features": {
+    "heading": "How It Works",
+    "submit": {
+      "title": "Submit Your Offering",
+      "desc": "Create a company profile, upload your pitch deck, and define offering terms in minutes."
+    },
+    "review": {
+      "title": "Get Reviewed",
+      "desc": "Every offering is reviewed before going live, ensuring quality for investors."
+    },
+    "connect": {
+      "title": "Connect with Investors",
+      "desc": "Investors browse live offerings matched to their interests and express intent to invest."
+    },
+    "close": {
+      "title": "Close the Deal",
+      "desc": "Review interested investors, accept commitments, and close your round."
+    }
+  },
+  "cta": {
+    "heading": "Ready to democratize fundraising?",
+    "subtitle": "Whether you're raising your seed round or looking for the next big opportunity, EquityAI is where it starts.",
+    "button": "Create Free Account"
+  },
+  "auth": {
+    "welcomeBack": "Welcome back",
+    "signInSubtitle": "Sign in to your account",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "createAccount": "Create your account",
+    "signUpSubtitle": "Start your journey with EquityAI",
+    "fullName": "Full name",
+    "iAmA": "I am a...",
+    "founder": "Founder",
+    "founderDesc": "I'm raising capital for my company",
+    "investor": "Investor",
+    "investorDesc": "I'm looking to invest in startups",
+    "creatingAccount": "Creating account...",
+    "haveAccount": "Already have an account?"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "login": "Connexion",
+    "getStarted": "Commencer",
+    "dashboard": "Tableau de bord",
+    "offerings": "Offres",
+    "profile": "Profil"
+  },
+  "hero": {
+    "title": "Offres Privées,",
+    "titleAccent": "Rendues Accessibles",
+    "subtitle": "EquityAI connecte les entreprises en phase d'amorçage à la recherche de financement avec les investisseurs précoces. Sans intermédiaires, sans friction — juste des opportunités.",
+    "raiseCapital": "Lever des Fonds",
+    "startInvesting": "Commencer à Investir"
+  },
+  "features": {
+    "heading": "Comment Ça Marche",
+    "submit": {
+      "title": "Soumettez Votre Offre",
+      "desc": "Créez un profil d'entreprise, téléchargez votre pitch deck et définissez les conditions en quelques minutes."
+    },
+    "review": {
+      "title": "Évaluation Qualité",
+      "desc": "Chaque offre est examinée avant d'être publiée, garantissant la qualité pour les investisseurs."
+    },
+    "connect": {
+      "title": "Connectez-vous aux Investisseurs",
+      "desc": "Les investisseurs parcourent les offres en direct correspondant à leurs intérêts et expriment leur intention d'investir."
+    },
+    "close": {
+      "title": "Concluez l'Accord",
+      "desc": "Examinez les investisseurs intéressés, acceptez les engagements et clôturez votre tour."
+    }
+  },
+  "cta": {
+    "heading": "Prêt à démocratiser le financement ?",
+    "subtitle": "Que vous leviez votre tour d'amorçage ou que vous cherchiez la prochaine grande opportunité, EquityAI est le point de départ.",
+    "button": "Créer un Compte Gratuit"
+  },
+  "auth": {
+    "welcomeBack": "Bon retour",
+    "signInSubtitle": "Connectez-vous à votre compte",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "signingIn": "Connexion en cours...",
+    "noAccount": "Pas de compte ?",
+    "signUp": "S'inscrire",
+    "createAccount": "Créez votre compte",
+    "signUpSubtitle": "Commencez votre aventure avec EquityAI",
+    "fullName": "Nom complet",
+    "iAmA": "Je suis un...",
+    "founder": "Fondateur",
+    "founderDesc": "Je lève des fonds pour mon entreprise",
+    "investor": "Investisseur",
+    "investorDesc": "Je cherche à investir dans des startups",
+    "creatingAccount": "Création du compte...",
+    "haveAccount": "Vous avez déjà un compte ?"
+  },
+  "footer": {
+    "rights": "Tous droits réservés."
+  }
+}

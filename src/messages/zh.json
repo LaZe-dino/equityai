@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "login": "登录",
+    "getStarted": "开始使用",
+    "dashboard": "仪表盘",
+    "offerings": "投资机会",
+    "profile": "个人资料"
+  },
+  "hero": {
+    "title": "私募发行，",
+    "titleAccent": "触手可及",
+    "subtitle": "EquityAI 将寻求融资的种子期公司与早期投资者连接在一起。没有中间人，没有摩擦——只有机会。",
+    "raiseCapital": "融资",
+    "startInvesting": "开始投资"
+  },
+  "features": {
+    "heading": "运作方式",
+    "submit": {
+      "title": "提交您的项目",
+      "desc": "创建公司资料，上传商业计划书，几分钟内即可定义发行条款。"
+    },
+    "review": {
+      "title": "质量审核",
+      "desc": "每个项目在上线前都经过审核，确保投资者的质量。"
+    },
+    "connect": {
+      "title": "对接投资者",
+      "desc": "投资者浏览与其兴趣匹配的在线项目，并表达投资意向。"
+    },
+    "close": {
+      "title": "达成交易",
+      "desc": "审查感兴趣的投资者，接受承诺，完成融资轮次。"
+    }
+  },
+  "cta": {
+    "heading": "准备好民主化融资了吗？",
+    "subtitle": "无论您是在进行种子轮融资，还是在寻找下一个重大机会，EquityAI 都是您的起点。",
+    "button": "免费创建账户"
+  },
+  "auth": {
+    "welcomeBack": "欢迎回来",
+    "signInSubtitle": "登录您的账户",
+    "email": "邮箱",
+    "password": "密码",
+    "signIn": "登录",
+    "signingIn": "登录中...",
+    "noAccount": "还没有账户？",
+    "signUp": "注册",
+    "createAccount": "创建您的账户",
+    "signUpSubtitle": "开始您的 EquityAI 之旅",
+    "fullName": "全名",
+    "iAmA": "我是...",
+    "founder": "创始人",
+    "founderDesc": "我正在为公司融资",
+    "investor": "投资者",
+    "investorDesc": "我想投资初创公司",
+    "creatingAccount": "创建账户中...",
+    "haveAccount": "已有账户？"
+  },
+  "footer": {
+    "rights": "版权所有。"
+  }
+}
