@@ -4,9 +4,12 @@ import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Suspense } from 'react';
+import { Sparkles } from 'lucide-react';
 
 function LoginForm() {
+  const t = useTranslations('auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -37,70 +40,78 @@ function LoginForm() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-md">
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+        <div className="gradient-orb gradient-orb-1" />
+        <div className="gradient-orb gradient-orb-2" />
+      </div>
+
+      <div className="relative z-10 w-full max-w-md">
         <div className="text-center">
-          <Link href="/" className="text-3xl font-bold text-gray-900">
-            Equity<span className="text-blue-600">AI</span>
+          <Link href="/" className="inline-flex items-center gap-2">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-500">
+              <Sparkles className="h-5 w-5 text-white" />
+            </div>
+            <span className="text-xl font-bold tracking-tight text-white">
+              Equity<span className="text-gradient">AI</span>
+            </span>
           </Link>
-          <h2 className="mt-6 text-2xl font-semibold text-gray-900">
-            Welcome back
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Sign in to your account
-          </p>
+          <h2 className="mt-8 text-2xl font-bold text-white">{t('welcomeBack')}</h2>
+          <p className="mt-2 text-sm text-neutral-500">{t('signInSubtitle')}</p>
         </div>
 
-        <form onSubmit={handleLogin} className="mt-8 space-y-4">
-          {error && (
-            <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600">
-              {error}
+        <form onSubmit={handleLogin} className="mt-8">
+          <div className="glass-card p-6 space-y-5">
+            {error && (
+              <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-3 text-sm text-red-400">
+                {error}
+              </div>
+            )}
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-neutral-300 mb-1.5">
+                {t('email')}
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="glass-input"
+                placeholder="you@example.com"
+              />
             </div>
-          )}
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-              placeholder="you@example.com"
-            />
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-neutral-300 mb-1.5">
+                {t('password')}
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="glass-input"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full py-3"
+            >
+              {loading ? t('signingIn') : t('signIn')}
+            </button>
           </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-              placeholder="••••••••"
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
-          >
-            {loading ? 'Signing in...' : 'Sign in'}
-          </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-gray-600">
-          Don&apos;t have an account?{' '}
-          <Link href="/signup" className="font-medium text-blue-600 hover:text-blue-700">
-            Sign up
+        <p className="mt-6 text-center text-sm text-neutral-500">
+          {t('noAccount')}{' '}
+          <Link href="/signup" className="font-medium text-orange-500 hover:text-orange-400">
+            {t('signUp')}
           </Link>
         </p>
       </div>
