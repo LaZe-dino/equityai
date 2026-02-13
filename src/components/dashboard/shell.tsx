@@ -13,9 +13,12 @@ import {
   LogOut,
   Sparkles,
   PlusCircle,
+  Menu,
+  X,
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const founderLinks = [
   { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
@@ -41,6 +44,7 @@ export default function DashboardShell({
   const pathname = usePathname();
   const router = useRouter();
   const links = profile.role === 'founder' ? founderLinks : investorLinks;
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = async () => {
     const supabase = createClient();
@@ -49,12 +53,32 @@ export default function DashboardShell({
     router.refresh();
   };
 
+  const closeSidebar = () => setSidebarOpen(false);
+
   return (
     <div className="flex min-h-screen">
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+          onClick={closeSidebar}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="sidebar fixed left-0 top-0 z-40 flex h-screen w-64 flex-col px-4 py-6">
+      <aside className={`sidebar fixed left-0 top-0 z-50 flex h-screen w-64 flex-col px-4 py-6 transition-transform duration-300 lg:translate-x-0 ${
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}>
+        {/* Close button on mobile */}
+        <button
+          onClick={closeSidebar}
+          className="absolute top-4 right-4 p-2 text-neutral-500 hover:text-white lg:hidden"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 px-3 mb-8">
+        <Link href="/" className="flex items-center gap-2 px-3 mb-8" onClick={closeSidebar}>
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-500">
             <Sparkles className="h-5 w-5 text-white" />
           </div>
@@ -72,6 +96,7 @@ export default function DashboardShell({
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={closeSidebar}
                 className={`sidebar-link ${isActive ? 'active' : ''}`}
               >
                 <Icon className="h-5 w-5" />
@@ -83,6 +108,7 @@ export default function DashboardShell({
           {profile.role === 'founder' && (
             <Link
               href="/dashboard/offerings/new"
+              onClick={closeSidebar}
               className="sidebar-link mt-4 border border-dashed border-orange-500/30 text-orange-500 hover:bg-orange-500/10"
             >
               <PlusCircle className="h-5 w-5" />
@@ -93,7 +119,7 @@ export default function DashboardShell({
 
         {/* Bottom section */}
         <div className="space-y-1 border-t border-white/[0.06] pt-4">
-          <Link href="/dashboard/settings" className="sidebar-link">
+          <Link href="/dashboard/settings" onClick={closeSidebar} className="sidebar-link">
             <Settings className="h-5 w-5" />
             Settings
           </Link>
@@ -116,8 +142,21 @@ export default function DashboardShell({
       </aside>
 
       {/* Main content */}
-      <main className="ml-64 flex-1 p-8">
-        <div className="mx-auto max-w-6xl">{children}</div>
+      <main className="flex-1 lg:ml-64">
+        {/* Mobile header */}
+        <div className="sticky top-0 z-30 flex items-center gap-3 border-b border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-xl px-4 py-3 lg:hidden">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 text-neutral-400 hover:text-white"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+          <span className="text-sm font-semibold text-white">
+            Equity<span className="text-gradient">AI</span>
+          </span>
+        </div>
+
+        <div className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">{children}</div>
       </main>
     </div>
   );

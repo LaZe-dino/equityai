@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
+import { sendInterestStatusEmail } from '@/lib/email';
 
 // PATCH /api/interests/[id] — Update interest status
 export async function PATCH(
@@ -21,10 +22,10 @@ export async function PATCH(
     return NextResponse.json({ error: 'Invalid status' }, { status: 400 });
   }
 
-  // Get the interest
+  // Get the interest with investor profile and offering details
   const { data: interest } = await supabase
     .from('interests')
-    .select('*, offering:offerings(*, company:companies(founder_id))')
+    .select('*, investor:profiles!interests_investor_id_fkey(full_name, email), offering:offerings(*, company:companies(founder_id))')
     .eq('id', id)
     .single();
 
@@ -62,6 +63,21 @@ export async function PATCH(
     entity_id: id,
     metadata: { offering_id: interest.offering_id },
   });
+
+  // Send email notification for accept/decline
+  if (status === 'accepted' || status === 'declined') {
+    const investor = interest.investor as any;
+    const offering = interest.offering as any;
+    if (investor?.email && offering?.title) {
+      sendInterestStatusEmail(
+        investor.email,
+        investor.full_name || 'Investor',
+        offering.title,
+        status,
+        interest.offering_id
+      );
+    }
+  }
 
   return NextResponse.json({ data });
 }
