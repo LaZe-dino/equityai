@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
   const ext = file.name.split('.').pop();
   const path = `${user.id}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
 
-  const { data: uploadData, error: uploadError } = await supabase.storage
+  const { error: uploadError } = await supabase.storage
     .from('documents')
     .upload(path, file, {
       contentType: file.type,

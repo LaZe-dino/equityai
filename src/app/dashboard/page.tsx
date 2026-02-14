@@ -223,6 +223,11 @@ async function InvestorDashboard({ userId }: { userId: string }) {
           icon={<Users className="h-5 w-5 text-amber-400" />}
         />
         <StatCard
+          label="Pending"
+          value={String(pendingInterests || 0)}
+          icon={<Clock className="h-5 w-5 text-yellow-400" />}
+        />
+        <StatCard
           label="Accepted"
           value={String(acceptedInterests || 0)}
           icon={<DollarSign className="h-5 w-5 text-green-400" />}

@@ -43,7 +43,7 @@ export async function sendInterestNotification(
   investorName: string,
   offeringTitle: string,
   amount: number | null,
-  _offeringId: string
+  _offeringId?: string
 ) {
   if (!resend) return;
   try {
@@ -79,7 +79,7 @@ export async function sendInterestStatusEmail(
   investorName: string,
   offeringTitle: string,
   status: 'accepted' | 'declined',
-  _offeringId: string
+  _offeringId?: string
 ) {
   if (!resend) return;
   try {

@@ -13,6 +13,7 @@ export default function SavedOfferingsPage() {
 
   useEffect(() => {
     loadSaved();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadSaved = async () => {

@@ -2,6 +2,16 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https' as const,
+        hostname: 'xikswjbanjuwepbsqngj.supabase.co',
+        pathname: '/storage/**',
+      },
+    ],
+  },
+};
 
 export default withNextIntl(nextConfig);

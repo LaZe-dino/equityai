@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { formatCurrency } from '@/lib/utils';
-import Link from 'next/link';
 import { TrendingUp, CheckCircle, XCircle, Clock } from 'lucide-react';
 
 export default function FounderInterestsPage() {
@@ -14,6 +13,7 @@ export default function FounderInterestsPage() {
 
   useEffect(() => {
     loadInterests();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadInterests = async () => {

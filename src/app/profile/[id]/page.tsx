@@ -1,7 +1,8 @@
 import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, MapPin, Globe, Building2, Calendar, Mail } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowLeft, Globe, Building2, Calendar } from 'lucide-react';
 
 export default async function PublicProfilePage({
   params,
@@ -64,7 +65,7 @@ export default async function PublicProfilePage({
           <div className="flex items-center gap-6">
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-500 text-2xl font-bold text-white shrink-0">
               {profile.avatar_url ? (
-                <img src={profile.avatar_url} alt={profile.full_name} className="h-full w-full rounded-full object-cover" />
+                <Image src={profile.avatar_url} alt={profile.full_name} width={80} height={80} className="h-full w-full rounded-full object-cover" />
               ) : (
                 profile.full_name?.charAt(0)?.toUpperCase() || '?'
               )}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { SECTORS, STAGES } from '@/types';
@@ -44,7 +44,8 @@ export default function OnboardingPage() {
     if (profile) setRole(profile.role);
   };
 
-  useState(() => { loadRole(); });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { loadRole(); }, []);
 
   const saveProfile = async () => {
     setLoading(true);

@@ -9,7 +9,6 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [profile, setProfile] = useState<any>(null);
-  const [investorProfile, setInvestorProfile] = useState<any>(null);
   const [form, setForm] = useState({
     full_name: '',
     phone: '',
@@ -29,6 +28,7 @@ export default function SettingsPage() {
 
   useEffect(() => {
     loadProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadProfile = async () => {
@@ -59,7 +59,6 @@ export default function SettingsPage() {
         .single();
 
       if (ip) {
-        setInvestorProfile(ip);
         setInvestorForm({
           accredited: ip.accredited || false,
           investment_min: ip.investment_min ? (ip.investment_min / 100).toString() : '',

@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
-import { useRouter } from 'next/navigation';
 import { Bookmark } from 'lucide-react';
 
 export default function SaveOfferingButton({
@@ -14,7 +12,6 @@ export default function SaveOfferingButton({
 }) {
   const [saved, setSaved] = useState(initialSaved);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const toggle = async () => {
     setLoading(true);

@@ -13,6 +13,7 @@ export default function MyInterestsPage() {
 
   useEffect(() => {
     loadInterests();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadInterests = async () => {

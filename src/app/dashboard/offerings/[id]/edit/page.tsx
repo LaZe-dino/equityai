@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { useRouter, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { OFFERING_TYPES } from '@/types';
 import { Save, Plus, X, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
@@ -13,7 +13,6 @@ export default function EditOfferingPage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const router = useRouter();
   const supabase = createClient();
 
   const [form, setForm] = useState({
@@ -35,6 +34,7 @@ export default function EditOfferingPage() {
 
   useEffect(() => {
     loadOffering();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadOffering = async () => {

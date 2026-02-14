@@ -65,7 +65,7 @@ export async function updateSession(request: NextRequest) {
     }
 
     return supabaseResponse;
-  } catch (e) {
+  } catch {
     // If anything fails in middleware, just pass through rather than crashing
     return NextResponse.next({ request });
   }

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { SECTORS, STAGES } from '@/types';
-import { Building2, Save } from 'lucide-react';
+import { Save } from 'lucide-react';
 
 export default function CompanyPage() {
   const [loading, setLoading] = useState(false);
@@ -27,6 +27,7 @@ export default function CompanyPage() {
 
   useEffect(() => {
     loadCompany();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadCompany = async () => {

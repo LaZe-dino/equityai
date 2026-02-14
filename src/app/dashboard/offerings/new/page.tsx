@@ -41,6 +41,7 @@ export default function NewOfferingPage() {
       if (data) setCompanyId(data.id);
     };
     loadCompany();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -270,6 +271,44 @@ export default function NewOfferingPage() {
                 <button
                   type="button"
                   onClick={() => setHighlights(highlights.filter((_, idx) => idx !== i))}
+                  className="text-neutral-600 hover:text-red-400"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Risks */}
+        <div className="glass-card p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-white">Risk Factors</h2>
+            <button
+              type="button"
+              onClick={() => setRisks([...risks, ''])}
+              className="text-sm text-orange-500 hover:text-orange-400 flex items-center gap-1"
+            >
+              <Plus className="h-4 w-4" /> Add
+            </button>
+          </div>
+          {risks.map((r, i) => (
+            <div key={i} className="flex gap-2">
+              <input
+                type="text"
+                value={r}
+                onChange={(e) => {
+                  const next = [...risks];
+                  next[i] = e.target.value;
+                  setRisks(next);
+                }}
+                className="glass-input"
+                placeholder="Risk factor..."
+              />
+              {risks.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => setRisks(risks.filter((_, idx) => idx !== i))}
                   className="text-neutral-600 hover:text-red-400"
                 >
                   <X className="h-4 w-4" />

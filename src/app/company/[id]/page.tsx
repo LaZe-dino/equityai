@@ -1,8 +1,9 @@
 import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Building2, MapPin, Globe, Users, Calendar, FileText, TrendingUp } from 'lucide-react';
-import { formatCurrency, formatDate } from '@/lib/utils';
+import { formatCurrency } from '@/lib/utils';
 
 export default async function CompanyPublicPage({
   params,
@@ -53,7 +54,7 @@ export default async function CompanyPublicPage({
           <div className="flex items-start gap-6">
             <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500/20 to-red-500/20 shrink-0">
               {company.logo_url ? (
-                <img src={company.logo_url} alt={company.name} className="h-full w-full rounded-2xl object-cover" />
+                <Image src={company.logo_url} alt={company.name} width={80} height={80} className="h-full w-full rounded-2xl object-cover" />
               ) : (
                 <Building2 className="h-10 w-10 text-orange-500" />
               )}
