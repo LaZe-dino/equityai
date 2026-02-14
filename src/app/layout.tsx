@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 
 export const dynamic = 'force-dynamic';
@@ -24,6 +25,7 @@ export default async function RootLayout({
       <body className="mesh-bg min-h-screen antialiased">
         <NextIntlClientProvider messages={messages}>
           {children}
+          <SpeedInsights />
         </NextIntlClientProvider>
       </body>
     </html>
