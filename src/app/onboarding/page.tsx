@@ -35,12 +35,39 @@ export default function OnboardingPage() {
 
   const loadRole = async () => {
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
-    const { data: profile } = await supabase
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+
+    // Try to get existing profile
+    let { data: profile } = await supabase
       .from('profiles')
       .select('role')
       .eq('id', user.id)
       .single();
+
+    // If no profile, create one from auth metadata
+    if (!profile) {
+      const meta = user.user_metadata || {};
+      const { data: newProfile, error } = await supabase
+        .from('profiles')
+        .upsert({
+          id: user.id,
+          email: user.email || '',
+          full_name: meta.full_name || user.email?.split('@')[0] || 'User',
+          role: meta.role || 'investor',
+        }, { onConflict: 'id' })
+        .select('role')
+        .single();
+
+      if (error) {
+        console.error('Failed to create profile:', error);
+        return;
+      }
+      profile = newProfile;
+    }
+
     if (profile) setRole(profile.role);
   };
 
