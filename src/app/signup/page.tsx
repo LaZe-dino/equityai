@@ -33,7 +33,9 @@ function SignUpForm() {
     setLoading(true);
 
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
+    
+    // Sign up the user
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -44,15 +46,48 @@ function SignUpForm() {
       },
     });
 
-    if (error) {
-      setError(error.message);
+    if (signUpError) {
+      setError(signUpError.message);
       setLoading(false);
       return;
     }
 
-    // After signup, ensure the profile exists (the DB trigger should create it,
-    // but we need to wait a moment for it to propagate)
-    // Then redirect to onboarding
+    if (!signUpData.user) {
+      setError('Failed to create account');
+      setLoading(false);
+      return;
+    }
+
+    // Create profile manually (in case trigger fails)
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .upsert({
+        id: signUpData.user.id,
+        email: email,
+        full_name: fullName,
+        role: role,
+        onboarded: false,
+      }, { onConflict: 'id' });
+
+    if (profileError) {
+      console.error('Profile creation error:', profileError);
+      // Continue anyway - profile might have been created by trigger
+    }
+
+    // Sign in immediately to get a session
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (signInError) {
+      // If auto-signin fails, they can still log in manually
+      console.error('Auto sign-in error:', signInError);
+      router.push('/login?message=Account created! Please sign in.');
+      return;
+    }
+
+    // Redirect to onboarding or dashboard based on preference
     router.push('/onboarding');
     router.refresh();
   };
