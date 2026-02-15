@@ -35,6 +35,10 @@ export async function updateSession(request: NextRequest) {
       }
     );
 
+    // AUTH DISABLED FOR DEVELOPMENT - allow all access
+    // To re-enable auth, uncomment the block below:
+    
+    /*
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -63,6 +67,7 @@ export async function updateSession(request: NextRequest) {
       url.pathname = '/dashboard';
       return NextResponse.redirect(url);
     }
+    */
 
     return supabaseResponse;
   } catch {
