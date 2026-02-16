@@ -42,8 +42,7 @@ export async function sendInterestNotification(
   founderName: string,
   investorName: string,
   offeringTitle: string,
-  amount: number | null,
-  _offeringId?: string
+  amount: number | null
 ) {
   if (!resend) return;
   try {
