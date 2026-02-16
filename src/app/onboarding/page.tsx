@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import { sendWelcomeEmail } from '@/lib/email';
 import { SECTORS, STAGES } from '@/types';
 import { ArrowRight, Building2, LineChart, Sparkles } from 'lucide-react';
 
@@ -110,11 +111,26 @@ export default function OnboardingPage() {
   };
 
   const finishOnboarding = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    // Get profile for welcome email
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('email, full_name, role')
+      .eq('id', user?.id)
+      .single();
+
     await fetch('/api/profile', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ onboarded: true }),
     });
+
+    // Send welcome email
+    if (profile?.email && profile?.role) {
+      sendWelcomeEmail(profile.email, profile.full_name, profile.role);
+    }
+
     setLoading(false);
     router.push('/dashboard');
     router.refresh();

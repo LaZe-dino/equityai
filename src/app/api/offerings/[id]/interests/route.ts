@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
+import { sendInterestNotification } from '@/lib/email';
 
 // GET /api/offerings/[id]/interests — List interests for an offering
 export async function GET(
@@ -97,6 +98,40 @@ export async function POST(
     entity_id: id,
     metadata: { amount: body.amount },
   });
+
+  // Send email notification to founder
+  const { data: offeringWithFounder } = await supabase
+    .from('offerings')
+    .select('title, company:companies(founder_id)')
+    .eq('id', id)
+    .single();
+
+  if (offeringWithFounder) {
+    const founderId = (offeringWithFounder.company as any)?.founder_id;
+    if (founderId) {
+      const { data: founder } = await supabase
+        .from('profiles')
+        .select('email, full_name')
+        .eq('id', founderId)
+        .single();
+
+      const { data: investor } = await supabase
+        .from('profiles')
+        .select('full_name')
+        .eq('id', user.id)
+        .single();
+
+      if (founder?.email && offeringWithFounder.title) {
+        sendInterestNotification(
+          founder.email,
+          founder.full_name || 'Founder',
+          investor?.full_name || 'An investor',
+          offeringWithFounder.title,
+          body.amount || null
+        );
+      }
+    }
+  }
 
   return NextResponse.json({ data }, { status: 201 });
 }
