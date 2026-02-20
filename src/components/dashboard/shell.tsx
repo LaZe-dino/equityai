@@ -19,6 +19,7 @@ import {
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { NotificationBell } from '@/components/notifications/notification-bell';
 
 const founderLinks = [
   { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
@@ -144,16 +145,24 @@ export default function DashboardShell({
       {/* Main content */}
       <main className="flex-1 lg:ml-64">
         {/* Mobile header */}
-        <div className="sticky top-0 z-30 flex items-center gap-3 border-b border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-xl px-4 py-3 lg:hidden">
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="p-2 text-neutral-400 hover:text-white"
-          >
-            <Menu className="h-5 w-5" />
-          </button>
-          <span className="text-sm font-semibold text-white">
-            Equity<span className="text-gradient">AI</span>
-          </span>
+        <div className="sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-xl px-4 py-3 lg:hidden">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="p-2 text-neutral-400 hover:text-white"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+            <span className="text-sm font-semibold text-white">
+              Equity<span className="text-gradient">AI</span>
+            </span>
+          </div>
+          <NotificationBell />
+        </div>
+
+        {/* Desktop header with notifications */}
+        <div className="hidden lg:flex sticky top-0 z-30 items-center justify-end gap-4 border-b border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-xl px-6 py-3">
+          <NotificationBell />
         </div>
 
         <div className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">{children}</div>
