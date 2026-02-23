@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
 
       // Sector match (40 points)
       if (sectors.length > 0 && company?.sector) {
-        const sectorMatch = sectors.some(s => 
+        const sectorMatch = sectors.some((s: string) => 
           company.sector.toLowerCase().includes(s.toLowerCase()) ||
           s.toLowerCase().includes(company.sector.toLowerCase())
         );
